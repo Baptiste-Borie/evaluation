@@ -21,7 +21,7 @@ class RessourceTypeForm extends AbstractType
             ->add('urlDocumentPhysique')
             ->add('etape', EntityType::class, [
                 'class' => Etape::class,
-                'choice_label' => 'intitule', // ou 'descriptif'
+                'choice_label' => 'descriptif', // ou 'descriptif'
                 'label' => 'Étape associée',
             ])
         ;

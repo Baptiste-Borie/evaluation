@@ -9,15 +9,16 @@ use App\Entity\Ressource;
 use App\Form\RessourceTypeForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use App\Repository\RessourceRepository;
 
 
 final class RessourceController extends AbstractController
 {
-    #[Route('/ressource', name: 'app_ressource')]
-    public function index(): Response
+    #[Route('/ressources', name: 'app_ressource_index')]
+    public function index(RessourceRepository $ressourceRepository): Response
     {
         return $this->render('ressource/index.html.twig', [
-            'controller_name' => 'RessourceController',
+            'ressources' => $ressourceRepository->findAll(),
         ]);
     }
 
