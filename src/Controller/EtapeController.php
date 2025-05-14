@@ -47,6 +47,7 @@ final class EtapeController extends AbstractController
     {
         return $this->render('etape/show.html.twig', [
             'etape' => $etape,
+
         ]);
     }
 
