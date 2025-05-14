@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une ressource{% endblock %}
+
+{% block body %}
+    <h1>Nouvelle ressource</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.intitule) }}
+        {{ form_row(form.presentation) }}
+        {{ form_row(form.support) }}
+        {{ form_row(form.nature) }}
+        {{ form_row(form.urlDocumentPhysique) }}
+        {{ form_row(form.etape) }}
+        <button class="btn btn-primary">Créer</button>
+    {{ form_end(form) }}
+{% endblock %}

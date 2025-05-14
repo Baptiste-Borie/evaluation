@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Message de {{ message.emetteur.firstname }}{% endblock %}
+
+{% block body %}
+    <h2>Message de {{ message.emetteur.firstname }} {{ message.emetteur.lastname }}</h2>
+    <p><strong>Reçu le :</strong> {{ message.dateHeure|date('d/m/Y H:i') }}</p>
+    <p><strong>Objet :</strong> {{ message.titre }}</p>
+
+    <hr>
+    <p>{{ message.contenu|nl2br }}</p>
+
+    <a href="{{ path('app_message_inbox') }}" class="btn btn-secondary mt-3">Retour à la boîte de réception</a>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon parcours{% endblock %}
+
+{% block body %}
+    <h1>Mon parcours</h1>
+
+    {% if etapes is empty %}
+        <p>Aucune étape enregistrée.</p>
+    {% endif %}
+
+    <a href="{{ path('app_etape_new') }}" class="btn btn-primary mb-3">➕ Ajouter une étape</a>
+
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>#</th>
+                <th>Intitulé</th>
+                <th>Description</th>
+                <th>Ressources</th>
+                <th>Rendus</th>
+                <th>Messages</th>
+                <th>Validation</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for etape in etapes %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ etape.intitule }}</td>
+                    <td>{{ etape.descriptif }}</td>
+                    <td>
+                        <ul class="list-unstyled">
+                            {% for ressource in etape.ressources %}
+                                <li>📘 {{ ressource.intitule }}</li>
+                            {% else %}
+                                <li><em>–</em></li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <!-- À remplir avec les rendus -->
+                        <em>À venir</em>
+                    </td>
+                    <td>
+                        <!-- À remplir avec messages liés -->
+                        <em>À venir</em>
+                    </td>
+                    <td>
+                        {% if etape.isValidee %}
+                            ✅ Validée
+                        {% else %}
+                            ⏳ En attente
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

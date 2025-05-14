@@ -27,12 +27,25 @@ class RegistrationController extends AbstractController
             // encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
 
+
+            switch ($user->getUserType()) {
+                case 'administrateur':
+                    $user->setRoles(['ROLE_ADMIN']);
+                    break;
+                case 'conseiller':
+                    $user->setRoles(['ROLE_CONSEILLER']);
+                    break;
+                default:
+                    $user->setRoles(['ROLE_USER']);
+                    break;
+            }
+
             $entityManager->persist($user);
             $entityManager->flush();
 
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('_profiler_home');
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('registration/register.html.twig', [

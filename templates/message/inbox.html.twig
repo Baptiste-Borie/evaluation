@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Boîte de réception{% endblock %}
+
+{% block body %}
+    <h1>Boîte de réception</h1>
+
+    {% if messages is empty %}
+        <p>Aucun message reçu.</p>
+    {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>De</th>
+                    <th>Objet</th>
+                    <th>Reçu le</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for message in messages %}
+                    <tr>
+                        <td>{{ message.emetteur.firstname }} {{ message.emetteur.lastname }}</td>
+                        <td>{{ message.titre }}</td>
+                        <td>{{ message.dateHeure|date('d/m/Y H:i') }}</td>
+                        <td>
+                        <a href="{{ path('app_message_show', { id: message.id }) }}" class="btn btn-sm btn-outline-primary">Voir</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

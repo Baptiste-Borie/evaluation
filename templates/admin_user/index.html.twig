@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+    <h1>Utilisateurs enregistrés</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Type</th>
+                <th>Rôles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.lastname }}</td>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.userType }}</td>
+                    <td>{{ user.roles|join(', ') }}</td>
+                    <td>
+                        <a href="{{ path('admin_user_edit', {id: user.id}) }}" class="btn btn-sm btn-warning">Modifier</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
